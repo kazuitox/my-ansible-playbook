@@ -1,0 +1,28 @@
+---
+- name: Build NIS Server Client
+  hosts: nisclient
+  sudo: yes
+  user: opc
+
+  tasks:
+    - name: Install NIS Server
+      yum:
+        name: ypbind
+        state: latest
+
+    - name: Run ypdomainname Command
+      shell: ypdomainname nis.oci.com
+
+    - name: Setup NIS Domain Name
+      lineinfile: 
+        dest=/etc/sysconfig/network
+        line=NISDOMAIN=nis.oci.com
+
+    - name: Run authconfig Command
+      shell: authconfig --enablenis --nisdomain=nis.oci.com --nisserver=server.sub07130624591.ansibletest.oraclevcn.com --enablemkhomedir --update
+
+    - name: start NIS Server
+      systemd:
+         name: ypbind
+         state: started
+         enabled: yes

@@ -1,0 +1,25 @@
+---
+- name: Base Settings
+  hosts: all
+  sudo: yes
+  user: opc
+
+  tasks:
+  - name: set timezone to Asia/Tokyo
+    timezone:
+     name: Asia/Tokyo
+
+  - name: firewalldの無効化
+    systemd:
+      name: firewalld
+      state: stopped
+      enabled: false
+
+  - name: Disable SE Linux
+    selinux: state=disabled
+    register: selinux
+
+  - name: Reboot
+    shell: "sleep 2 && reboot"
+    async: 1
+    poll: 0

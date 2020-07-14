@@ -1,0 +1,29 @@
+---
+- name: Build NIS Server Client
+  hosts: nisserver
+  sudo: yes
+  user: opc
+
+  tasks:
+    - name: Install NIS Server
+      yum:
+        name: ypserv
+        state: latest
+
+    - name: Setup NIS Domain Name
+      lineinfile: 
+        dest=/etc/sysconfig/network
+        line=NISDOMAIN=nis.oci.com
+
+    - name: start NIS Server
+      systemd:
+         name: "{{ item }}"
+         state: started
+         enabled: yes
+      with_items:
+       - ypserv
+       - ypxfrd
+       - yppasswdd
+
+    - name: Run yp-init
+      shell: echo | /usr/lib64/yp/ypinit -m
