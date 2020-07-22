@@ -5,7 +5,7 @@
   user: opc
 
   tasks:
-    - name: Install NIS Server
+    - name: Install NIS Client
       yum:
         name: ypbind
         state: latest
