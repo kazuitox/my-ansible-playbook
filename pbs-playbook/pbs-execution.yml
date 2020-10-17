@@ -1,7 +1,7 @@
 ---
 - name: Build PBS Pro Execution
   hosts: pbsclient
-  sudo: yes
+  become: true
   user: opc
 
   tasks:
