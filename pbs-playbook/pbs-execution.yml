@@ -1,6 +1,6 @@
 ---
 - name: Build PBS Pro Execution
-  hosts: pbsclient
+  hosts: compute
   become: true
   user: opc
 
@@ -22,7 +22,7 @@
         state=present
         backrefs=yes
         regexp='CHANGE_THIS_TO_PBS_PRO_SERVER_HOSTNAME'
-        line='PBS_SERVER=server'
+        line='PBS_SERVER=bastion'
 
     - name: modify /var/spool/pbs/mom_priv/config
       lineinfile: >-
@@ -30,7 +30,7 @@
         state=present
         backrefs=yes
         regexp='CHANGE_THIS_TO_PBS_PRO_SERVER_HOSTNAME'
-        line='$clienthost server'
+        line='$clienthost bastion'
 
     - name: start PBS Pro Execution
       systemd:
