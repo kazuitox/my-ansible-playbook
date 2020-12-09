@@ -1,6 +1,6 @@
 ---
 - name: Build PBS Pro Server
-  hosts: bastion
+  hosts: server
   become: true
   user: opc
 
