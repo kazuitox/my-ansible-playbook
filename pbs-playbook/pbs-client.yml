@@ -1,0 +1,25 @@
+---
+- name: Build PBS Pro Client
+  hosts: client
+  become: true
+  user: opc
+
+  tasks:
+    - name: unzip PBS Pro 19.1.2
+      unarchive:
+       src: https://github.com/openpbs/openpbs/releases/download/v19.1.3/pbspro_19.1.3.centos_7.zip
+       dest: /home/opc
+       remote_src: yes
+
+    - name: Install PBS Pro Client node
+      yum:
+        name: /home/opc/pbspro_19.1.3.centos_7/pbspro-client-19.1.3-0.x86_64.rpm
+        state: present
+
+    - name: modify /etc/pbs.conf
+      lineinfile: >-
+        dest='/etc/pbs.conf'
+        state=present
+        backrefs=yes
+        regexp='CHANGE_THIS_TO_PBS_PRO_SERVER_HOSTNAME'
+        line='PBS_SERVER=******'
