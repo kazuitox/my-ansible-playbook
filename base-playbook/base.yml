@@ -1,7 +1,7 @@
 ---
 - name: Base Settings
   hosts: all
-  sudo: yes
+  become: yes
   user: opc
 
   tasks:
