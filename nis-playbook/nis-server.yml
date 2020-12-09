@@ -1,7 +1,7 @@
 ---
 - name: Build NIS Server Client
   hosts: nisserver
-  sudo: yes
+  become: yes
   user: opc
 
   tasks:
