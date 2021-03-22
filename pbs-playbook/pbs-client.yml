@@ -22,4 +22,4 @@
         state=present
         backrefs=yes
         regexp='CHANGE_THIS_TO_PBS_PRO_SERVER_HOSTNAME'
-        line='PBS_SERVER=******'
+        line='PBS_SERVER='
