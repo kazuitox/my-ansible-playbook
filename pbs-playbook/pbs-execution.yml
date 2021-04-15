@@ -1,6 +1,6 @@
 ---
 - name: Build PBS Pro Execution
-  hosts: mom
+  hosts: compute
   become: true
   user: opc
 
