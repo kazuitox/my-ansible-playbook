@@ -1,6 +1,6 @@
 ---
 - name: Build NIS Server Client
-  hosts: nisserver
+  hosts: bastion
   become: yes
   user: opc
 
