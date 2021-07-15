@@ -19,7 +19,7 @@
         line=NISDOMAIN=nis.oci.com
 
     - name: Run authconfig Command
-      shell: authconfig --enablenis --nisdomain=nis.oci.com --nisserver=server.sub07130624591.ansibletest.oraclevcn.com --enablemkhomedir --update
+      shell: authconfig --enablenis --nisdomain=nis.oci.com --nisserver=bastion --enablemkhomedir --update
 
     - name: start NIS Server
       systemd:
