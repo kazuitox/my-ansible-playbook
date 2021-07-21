@@ -9,6 +9,11 @@
       yum:
         name: ypserv
         state: latest
+        
+    - name: Install NIS Client
+      yum:
+        name: ypbind
+        state: latest
 
     - name: Setup NIS Domain Name
       lineinfile: 
