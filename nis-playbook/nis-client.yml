@@ -1,5 +1,5 @@
 ---
-- name: Build NIS Server Client
+- name: Build NIS Client
   hosts: compute
   become: yes
   user: opc
